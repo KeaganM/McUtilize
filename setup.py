@@ -7,5 +7,5 @@ url='https://github.com/KeaganM/McUtilize',
 author='Keagan McNew',
 author_email='kmcnew2@gmail.com',
 license='MIT',
-packages=['file_ops'],
+packages=['mcutilize'],
 zip_safe=False)

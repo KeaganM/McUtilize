@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup,find_packages
 setup(
 name='McUtilize',
 version='0.1',
@@ -7,5 +7,5 @@ url='https://github.com/KeaganM/McUtilize',
 author='Keagan McNew',
 author_email='kmcnew2@gmail.com',
 license='MIT',
-packages=['mcutilize'],
+packages=find_packages(),
 zip_safe=False)

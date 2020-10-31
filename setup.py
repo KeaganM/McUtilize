@@ -1,5 +1,5 @@
 from setuptools import setup
-setup(name='km_utilies',
+setup(name='McUtilize',
 version='0.1',
 description='General utilities for various tasks',
 url='#',

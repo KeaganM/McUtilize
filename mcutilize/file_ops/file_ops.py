@@ -1,6 +1,6 @@
 import os
 import re
-from typing import List
+from typing import List,Union
 
 
 # todo move this to a documentation; good example of recursion
@@ -14,6 +14,10 @@ from typing import List
 #         else:
 #             root = new_root
 #             os.mkdir(root)
+
+def _path_map_handler(path_map:dict) -> dict:
+    return {key:f'.*{value}.*' for key,value in path_map.items()}
+
 
 
 def _get_paths(directory: str) -> List[str]:
@@ -41,7 +45,10 @@ def _filter_paths(paths: List[str], path_map: dict) -> dict:
     return {key: list(filter(lambda x: re.match(value, x), paths)) for key, value in path_map.items()}
 
 
-def get_desired_paths(directory: str, path_map: dict) -> dict:
+def get_desired_paths(directory:Union[None,str], path_map: dict,file_names_only = True) -> dict:
+    # main function to get desired paths
+    if file_names_only:
+        path_map = _path_map_handler(path_map)
     paths = _get_paths(directory)
     print(f'paths are:\n {paths}')
     return _filter_paths(paths, path_map)

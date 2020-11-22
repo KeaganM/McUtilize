@@ -1,7 +1,7 @@
 from setuptools import setup,find_packages
 setup(
 name='McUtilize',
-version='0.1',
+version='0.2',
 description='General utilities for various tasks',
 url='https://github.com/KeaganM/McUtilize',
 author='Keagan McNew',

@@ -63,8 +63,15 @@ def standardize_path(path: str) -> str:
 
 
 if __name__ == '__main__':
-    path = 'test/testtest/testtesttest/'
+    # path = 'test/testtest/testtesttest/'
+    #
+    # standard_path = standardize_path(path)
+    # create_path(path)
+    test = '..'
+    config = {
+        'test':'.*file_ops'
+    }
 
-    standard_path = standardize_path(path)
-    create_path(path)
+    t = get_desired_paths(test,config,file_names_only=False)
+    print(t)
     pass

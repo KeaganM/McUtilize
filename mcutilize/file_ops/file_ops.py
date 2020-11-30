@@ -53,7 +53,9 @@ def get_desired_paths(directory: Union[None, str], path_map: dict, file_names_on
         path_map = _path_map_handler(path_map)
     paths = _get_paths(directory)
     print(f'paths are:\n {paths}')
-    return _filter_paths(paths, path_map)
+    result = _filter_paths(paths, path_map)
+    print(f'filtered parts are :\n {result}')
+    return result
 
 
 def create_path(path: str) -> None:

@@ -1,6 +1,6 @@
 import os
 import re
-from typing import List,Union
+from typing import List, Union, Any
 
 
 # todo move this to a documentation; good example of recursion
@@ -15,9 +15,8 @@ from typing import List,Union
 #             root = new_root
 #             os.mkdir(root)
 
-def _path_map_handler(path_map:dict) -> dict:
-    return {key:f'.*{value}.*' for key,value in path_map.items()}
-
+def _path_map_handler(path_map: dict) -> dict:
+    return {key: f'.*{value}.*' for key, value in path_map.items()}
 
 
 def _get_paths(directory: str) -> List[str]:
@@ -30,10 +29,12 @@ def _get_paths(directory: str) -> List[str]:
         if item[0] == "_":
             continue
         full_path = os.path.join(directory, item)
+        paths.append(full_path)
         if os.path.isdir(full_path):
+            # paths.append(full_path)
             paths.extend(_get_paths(full_path))
-        else:
-            paths.append(full_path)
+        # else:
+        #     paths.append(full_path)
 
     return paths
 
@@ -42,10 +43,11 @@ def _filter_paths(paths: List[str], path_map: dict) -> dict:
     # todo either dump this and change out get_paths or add functionality to remove already found paths
     # todo may want to add a sorting feature as well
 
-    return {key: list(filter(lambda x: re.match(value, x), paths)) for key, value in path_map.items()}
+    result = {key: list(filter(lambda x: re.match(value, x), paths)) for key, value in path_map.items()}
+    return result
 
 
-def get_desired_paths(directory:Union[None,str], path_map: dict,file_names_only = True) -> dict:
+def get_desired_paths(directory: Union[None, str], path_map: dict, file_names_only=True, ) -> dict:
     # main function to get desired paths
     if file_names_only:
         path_map = _path_map_handler(path_map)
@@ -67,11 +69,12 @@ if __name__ == '__main__':
     #
     # standard_path = standardize_path(path)
     # create_path(path)
-    test = '..'
+    test = '.'
     config = {
-        'test':'.*file_ops'
+        'test': '.*file_ops.py',
+        'test2': '.*inner_test'
     }
 
-    t = get_desired_paths(test,config,file_names_only=False)
+    t = get_desired_paths(test, config, file_names_only=False)
     print(t)
     pass

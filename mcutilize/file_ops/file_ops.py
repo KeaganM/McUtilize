@@ -2,6 +2,7 @@ import os
 import re
 from typing import List, Union, Any
 
+# todo may want to consider moving all the file operations into a class
 
 # todo move this to a documentation; good example of recursion
 # def output(path: str) -> None:
@@ -48,6 +49,7 @@ def _filter_paths(paths: List[str], path_map: dict) -> dict:
 
 
 def get_desired_paths(directory: Union[None, str], path_map: dict, file_names_only=True, ) -> dict:
+    # todo add examples of the path_map or a dataclass to use
     # main function to get desired paths
     if file_names_only:
         path_map = _path_map_handler(path_map)
@@ -63,6 +65,7 @@ def create_path(path: str) -> None:
 
 
 def standardize_path(path: str) -> str:
+    # todo may want to add an option to reverse this
     return path[:-1] if path[-1] == '/' else path
 
 

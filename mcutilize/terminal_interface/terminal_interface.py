@@ -1,9 +1,7 @@
 import sys
 from typing import get_type_hints
 
-
-def test(x: int, y: int):
-    return x + y
+from settings.commands import COMMANDS
 
 
 def _parse_args(*args, _arg_delimenter: str = '--', ) -> dict:
@@ -30,11 +28,10 @@ def _check_and_convert_args(**kwargs):
     return kwargs
 
 
-def terminal_wrapper(function, *args, convert_args: bool = True):
+def terminal_wrapper(function:str,*args,commands:dict,convert_args: bool = True):
     parsed_kwargs = _parse_args(*args)
     converted_kwargs = _check_and_convert_args(**parsed_kwargs) if convert_args else parsed_kwargs
-    return function(**converted_kwargs)
-
+    return commands[function](**converted_kwargs)
 
 if __name__ == '__main__':
     # todo may want to consider some sort of type checking functionality, for now if it looks like a int/float/whatever,
@@ -57,10 +54,10 @@ if __name__ == '__main__':
     #     if type(args[arg]) == type(test_function_types[arg]):
     #         print(f'arg:{arg} is the same type as {test_function_types[arg]}')
 
-    args = sys.argv
-    # args = ['--x', '1', '--y', '10.897']
-
-    res = terminal_wrapper(test, *args)
+    args = sys.argv[1:]
+    # args = ['test2','--x', '1', '--y', '10.897']
+    print(args)
+    res = terminal_wrapper(*args,commands=COMMANDS,)
     print(res)
 
     pass

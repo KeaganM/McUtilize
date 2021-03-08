@@ -63,7 +63,7 @@ class Requester:
 
 if __name__ == '__main__':
 
-    url_root = 'https://api/stripe.com'
+    # url_root = 'https://api/stripe.com'
 
 
     # url_root = 'https://reqres.in'
@@ -83,3 +83,9 @@ if __name__ == '__main__':
     # }
     # r = Requester(url,type,data=data).make_request()
     # print(r)
+
+    url = 'https://jsonplaceholder.typicode.com/posts'
+
+    r = Requester(url,'GET')
+    results = r.make_request()
+    print(results)

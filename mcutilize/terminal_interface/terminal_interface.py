@@ -17,6 +17,7 @@ def _check_and_convert_args(**kwargs):
         except NameError:
             pass
         kwargs[key] = new_value
+    return kwargs
 
 
 def terminal_wrapper(function:str,*args,commands:dict,convert_args: bool = True):

@@ -14,7 +14,8 @@ def _check_and_convert_args(**kwargs):
         new_value = value
         try:
             new_value = eval(value)
-        except NameError:
+            quit()
+        except (NameError, SyntaxError):
             pass
         kwargs[key] = new_value
     return kwargs
@@ -55,7 +56,7 @@ if __name__ == '__main__':
     #
 
     # args = sys.argv[1:]
-    args = ['test3','--items','["hello","how"]']
+    args = ['test4','--items',"[['main.id','>','1],['main.id','<','100']]"]
     res = terminal_wrapper(*args,commands=COMMANDS,)
     print(res)
 
